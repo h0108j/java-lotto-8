@@ -27,6 +27,6 @@ public class LottosValidator implements Validator<String> {
     }
 
     private void validateMaximum(int price) {
-        if (price > MAXIMUM_PURCHASE_PRICE) { throw new IllegalArgumentException( MAXIMUM_PURCHASE_PRICE + "이하의 값을 입력해야 합니다."); }
+        if (price > MAXIMUM_PURCHASE_PRICE) { throw new IllegalArgumentException(MAXIMUM_PURCHASE_PRICE + "이하의 값을 입력해야 합니다."); }
     }
 }
