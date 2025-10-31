@@ -14,7 +14,7 @@ public class Lottos {
     private static int purchasePrice;
     private static int purchaseCount;
 
-    private List<Lotto> lottos;
+    private static List<Lotto> lottos;
 
     public Lottos(int purchasePrice) {
         this.lottoFactory = new LottoFactory(new RandomNumberGenerator());
@@ -31,5 +31,9 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public int getPurchaseCount() {
+        return purchaseCount;
     }
 }

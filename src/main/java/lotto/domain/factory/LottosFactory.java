@@ -13,6 +13,8 @@ public class LottosFactory {
 
     public Lottos createLottos(String purchasePrice) {
         validator.validate(purchasePrice);
-        return new Lottos(Integer.parseInt(purchasePrice));
+        Lottos lotto = new Lottos(Integer.parseInt(purchasePrice));
+        lotto.generateLottos();
+        return lotto;
     }
 }
