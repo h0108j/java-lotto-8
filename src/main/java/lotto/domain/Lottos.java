@@ -18,6 +18,7 @@ public class Lottos {
     private static int purchaseCount;
 
     private static List<Lotto> lottos;
+    private static List<Integer> rankCounts;
     private Lotto winningNumber;
     private int bonusNumber;
 
@@ -26,6 +27,7 @@ public class Lottos {
         this.purchasePrice = purchasePrice;
         this.purchaseCount = purchasePrice / LOTTO_UNIT_PRICE;
         this.bonusNumber = 0;
+        this.rankCounts = new ArrayList<>();
     }
 
     public void generateLottos() {
@@ -50,7 +52,6 @@ public class Lottos {
                 .map(Lotto::calculateRanking)
                 .toList();
 
-        List<Integer> rankCounts = new ArrayList<>();
         for (LottoRank rank : LottoRank.values()) {
             int count = (int) results.stream()
                     .filter(result -> result == rank)
