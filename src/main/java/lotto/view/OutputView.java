@@ -7,4 +7,5 @@ public interface OutputView {
     void printErrorMessage(String message);
     void printLottoGenerateResult(LottoGenerateResult lottoGenerateResult);
     void printWinningNumberMessage();
+    void printBonusNumberMessage();
 }

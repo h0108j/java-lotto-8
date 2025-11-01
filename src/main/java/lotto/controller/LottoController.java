@@ -28,6 +28,7 @@ public class LottoController {
         Lottos lottos = buildLottos();
         outputView.printLottoGenerateResult(toLottoGenerateResult(lottos));
         Lotto winningLotto = readWinningNumber();
+        readBonusNumber(lottos, winningLotto);
     }
 
     private Lottos buildLottos() {
@@ -61,13 +62,24 @@ public class LottoController {
         Lotto winningLotto = null;
         while (winningLotto == null) {
             outputView.printWinningNumberMessage();
-            lottoFactory = new LottoFactory(new ManualNumberGenerator(inputView.read()));
             try {
+                lottoFactory = new LottoFactory(new ManualNumberGenerator(inputView.read()));
                 winningLotto = lottoFactory.createLotto();
             } catch(IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
         return winningLotto;
+    }
+
+    private void readBonusNumber(Lottos lottos, Lotto winningNumber) {
+        outputView.printBonusNumberMessage();
+        while (lottos.getBonusNumber() == 0) {
+            try {
+                lottos.addWinningNumber(winningNumber, inputView.read());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
