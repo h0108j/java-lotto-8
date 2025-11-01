@@ -33,7 +33,11 @@ public class ConsoleOutputView implements OutputView {
         System.out.println("3개 일치 (5,000원) - " +  rankings.get(4) + "개");
         System.out.println("4개 일치 (50,000원) - " +  rankings.get(3) + "개");
         System.out.println("5개 일치 (1,500,000원) - " +  rankings.get(2) + "개");
-        System.out.println("5개 일치, 보너스 불 일치 (30,000,000원) - " +  rankings.get(1) + "개");
-        System.out.println("6개 일치 (20,000,000원) - " +  rankings.get(0) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +  rankings.get(1) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " +  rankings.get(0) + "개");
+    }
+
+    public void printReturnRate(double returnRate) {
+        System.out.println("총 수익률은 " +  String.format("%.1f", returnRate) + "%입니다.");
     }
 }

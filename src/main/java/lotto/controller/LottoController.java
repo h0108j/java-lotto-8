@@ -28,6 +28,7 @@ public class LottoController {
         outputView.printLottoGenerateResult(toLottoGenerateResult(lottos));
         readBonusNumber(lottos, readWinningNumber());
         outputView.printRankingCount(lottos.calculateEachResult());
+        outputView.printReturnRate(lottos.calculateReturnRate());
     }
 
     private Lottos buildLottos() {

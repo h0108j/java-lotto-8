@@ -11,4 +11,5 @@ public interface OutputView {
     void printWinningNumberMessage();
     void printBonusNumberMessage();
     void printRankingCount(List<Integer> rankings);
+    void printReturnRate(double returnRate);
 }

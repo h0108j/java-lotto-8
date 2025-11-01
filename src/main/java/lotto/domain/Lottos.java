@@ -6,9 +6,7 @@ import lotto.validation.BonusNumberValidator;
 import lotto.validation.Validator;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static lotto.common.Constants.LOTTO_UNIT_COUNT;
 import static lotto.common.Constants.LOTTO_UNIT_PRICE;
 
 public class Lottos {
@@ -60,6 +58,15 @@ public class Lottos {
         }
 
         return rankCounts;
+    }
+
+    public double calculateReturnRate() {
+        double totalPrize = (LottoRank.FIRST.getPrize() * rankCounts.get(0)
+                + LottoRank.SECOND.getPrize() * rankCounts.get(1)
+                + LottoRank.THIRD.getPrize() * rankCounts.get(2)
+                + LottoRank.FOURTH.getPrize() * rankCounts.get(3)
+                + LottoRank.FIFTH.getPrize() * rankCounts.get(4));
+        return (totalPrize / purchasePrice) * 100;
     }
 
     public int getBonusNumber() {
