@@ -41,6 +41,14 @@ public class Lottos {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
+    public void calculateResult() {
+        List<Long> matchCounts = lottos.stream()
+                .map(lotto -> lotto.getSortedNumbers().stream()
+                        .filter(winningNumber.getSortedNumbers()::contains)
+                        .count())
+                .toList();
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

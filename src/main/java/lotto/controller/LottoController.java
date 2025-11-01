@@ -27,8 +27,8 @@ public class LottoController {
     public void run() {
         Lottos lottos = buildLottos();
         outputView.printLottoGenerateResult(toLottoGenerateResult(lottos));
-        Lotto winningLotto = readWinningNumber();
-        readBonusNumber(lottos, winningLotto);
+        readBonusNumber(lottos, readWinningNumber());
+        lottos.calculateResult();
     }
 
     private Lottos buildLottos() {
