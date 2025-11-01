@@ -6,10 +6,14 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private int matchCount;
+    private boolean isBonusMatched;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        this.matchCount = 0;
+        this.isBonusMatched = false;
     }
 
     private void validate(List<Integer> numbers) {
@@ -23,5 +27,17 @@ public class Lotto {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         return sortedNumbers;
+    }
+
+    public void calulateMatchResult(List<Integer> winningNumbers, int bonusNumber) {
+        matchCount = (int)numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+        isBonusMatched = numbers.stream()
+                .anyMatch(number -> number == bonusNumber);
+    }
+
+    public LottoRank calculateRanking() {
+        return LottoRank.from(matchCount, isBonusMatched);
     }
 }

@@ -5,9 +5,10 @@ import lotto.domain.generator.RandomNumberGenerator;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.Validator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import static lotto.common.Constants.LOTTO_UNIT_COUNT;
 import static lotto.common.Constants.LOTTO_UNIT_PRICE;
 
 public class Lottos {
@@ -41,12 +42,23 @@ public class Lottos {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
-    public void calculateResult() {
-        List<Long> matchCounts = lottos.stream()
-                .map(lotto -> lotto.getSortedNumbers().stream()
-                        .filter(winningNumber.getSortedNumbers()::contains)
-                        .count())
+    public List<Integer> calculateEachResult() {
+        lottos.stream()
+                .forEach(lotto -> lotto.calulateMatchResult(winningNumber.getSortedNumbers(), bonusNumber));
+
+        List<LottoRank> results = lottos.stream()
+                .map(Lotto::calculateRanking)
                 .toList();
+
+        List<Integer> rankCounts = new ArrayList<>();
+        for (LottoRank rank : LottoRank.values()) {
+            int count = (int) results.stream()
+                    .filter(result -> result == rank)
+                    .count();
+            rankCounts.add(count);
+        }
+
+        return rankCounts;
     }
 
     public int getBonusNumber() {

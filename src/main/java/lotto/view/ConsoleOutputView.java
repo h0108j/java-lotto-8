@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.DTO.LottoDTO;
 import lotto.DTO.LottoGenerateResult;
 
+import java.util.List;
+
 public class ConsoleOutputView implements OutputView {
     public void printPurchasePriceMessage() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -25,5 +27,8 @@ public class ConsoleOutputView implements OutputView {
 
     public void printBonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public void printRankingCount(List<Integer> rankings) {
     }
 }
