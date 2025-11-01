@@ -2,8 +2,12 @@ package lotto.controller;
 
 import lotto.DTO.LottoDTO;
 import lotto.DTO.LottoGenerateResult;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.factory.LottoFactory;
 import lotto.domain.factory.LottosFactory;
+import lotto.domain.generator.ManualNumberGenerator;
+import lotto.domain.generator.NumberGenerator;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 import lotto.view.InputView;
@@ -23,6 +27,7 @@ public class LottoController {
     public void run() {
         Lottos lottos = buildLottos();
         outputView.printLottoGenerateResult(toLottoGenerateResult(lottos));
+        Lotto winningLotto = readWinningNumber();
     }
 
     private Lottos buildLottos() {
@@ -49,5 +54,20 @@ public class LottoController {
     private String readPurchaseAmount() {
         outputView.printPurchasePriceMessage();
         return inputView.read();
+    }
+
+    private Lotto readWinningNumber() {
+        LottoFactory lottoFactory;
+        Lotto winningLotto = null;
+        while (winningLotto == null) {
+            outputView.printWinningNumberMessage();
+            lottoFactory = new LottoFactory(new ManualNumberGenerator(inputView.read()));
+            try {
+                winningLotto = lottoFactory.createLotto();
+            } catch(IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return winningLotto;
     }
 }

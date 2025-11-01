@@ -22,7 +22,6 @@ class LottosFactoryTest {
     void 로또s_생성_성공_1() {
         String validPrice = "6000";
         Lottos lottos = lottosFactory.createLottos(validPrice);
-        lottos.generateLottos();
         assertThat(lottos).isNotNull();
         assertThat(lottos.getLottos()).hasSize(6);
     }
