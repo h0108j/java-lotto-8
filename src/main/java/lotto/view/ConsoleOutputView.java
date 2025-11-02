@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.DTO.LottoDTO;
 import lotto.DTO.LottoGenerateResult;
+import lotto.DTO.LottoWinningResult;
 
 import java.util.List;
 
@@ -29,12 +30,12 @@ public class ConsoleOutputView implements OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printRankingCount(List<Integer> rankings) {
-        System.out.println("3개 일치 (5,000원) - " +  rankings.get(4) + "개");
-        System.out.println("4개 일치 (50,000원) - " +  rankings.get(3) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " +  rankings.get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +  rankings.get(1) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " +  rankings.get(0) + "개");
+    public void printRankingCount(List<LottoWinningResult> lottoWinningResults) {
+        for (LottoWinningResult result : lottoWinningResults) {
+            System.out.printf("%d개 일치", result.getMatchCount());
+            if (result.isBonusMatched()) { System.out.print(", 보너스 볼 일치"); }
+            System.out.printf(" (%,d원) - %d개\n", result.getPrize(), result.getWinningCount());
+        }
     }
 
     public void printReturnRate(double returnRate) {

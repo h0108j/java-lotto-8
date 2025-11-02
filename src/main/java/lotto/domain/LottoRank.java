@@ -29,6 +29,14 @@ public enum LottoRank {
                 .orElse(MISS);
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean getBonus() {
+        return bonus;
+    }
+
     public int getPrize() {
         return prize;
     }
