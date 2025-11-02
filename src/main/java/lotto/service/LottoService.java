@@ -26,7 +26,6 @@ public class LottoService {
         List<LottoDTO> lottoDTOs = lottos.getLottos().stream()
                 .map(lotto -> new LottoDTO(lotto.getSortedNumbers()))
                 .toList();
-
         return new LottoGenerateResult(lottos.calculatePurchaseCount(), lottoDTOs);
     }
 

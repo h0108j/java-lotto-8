@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LottoFactory {
     private NumberGenerator numberGenerator;
-    private Validator validator;
+    private Validator<List<Integer>> validator;
 
     public LottoFactory(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;

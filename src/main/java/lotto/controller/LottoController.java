@@ -2,8 +2,6 @@ package lotto.controller;
 
 import lotto.domain.Lottos;
 import lotto.service.LottoService;
-import lotto.view.ConsoleInputView;
-import lotto.view.ConsoleOutputView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,15 +9,15 @@ public class LottoController {
     private InputView inputView;
     private OutputView outputView;
 
-    public LottoController() {
-        this.inputView = new ConsoleInputView();
-        this.outputView = new ConsoleOutputView();
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
         LottoService lottoService = new LottoService();
-        Lottos lottos = readPurchasePrice(lottoService);
 
+        Lottos lottos = readPurchasePrice(lottoService);
         outputView.printLottoGenerateResult(lottoService.buildLottoGenerateResult(lottos));
         readWinningNumbers(lottoService, lottos);
         readBonusNumber(lottoService, lottos);

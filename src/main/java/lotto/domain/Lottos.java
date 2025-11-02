@@ -42,7 +42,7 @@ public class Lottos {
 
     public Map<LottoRank, Integer> calculateEachResult() {
         lottos.stream()
-                .forEach(lotto -> lotto.calulateMatchResult(winningNumber.getSortedNumbers(), bonusNumber));
+                .forEach(lotto -> lotto.calculateMatchResult(winningNumber.getSortedNumbers(), bonusNumber));
 
         List<LottoRank> results = lottos.stream()
                 .map(Lotto::calculateRanking)

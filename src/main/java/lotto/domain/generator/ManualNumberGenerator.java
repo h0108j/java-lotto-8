@@ -3,6 +3,8 @@ package lotto.domain.generator;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.common.Constants.NUMBER_DELIMITER;
+
 public class ManualNumberGenerator implements NumberGenerator {
     private List<Integer> numbers;
 
@@ -18,7 +20,7 @@ public class ManualNumberGenerator implements NumberGenerator {
         if (numbers.isEmpty()) { throw new IllegalArgumentException("빈 값은 입력할 수 없습니다."); }
         List<Integer> numberList;
         try {
-            numberList = Arrays.stream(numbers.split(","))
+            numberList = Arrays.stream(numbers.split(NUMBER_DELIMITER))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
