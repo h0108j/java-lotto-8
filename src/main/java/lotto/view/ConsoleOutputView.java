@@ -31,6 +31,8 @@ public class ConsoleOutputView implements OutputView {
     }
 
     public void printRankingCount(List<LottoWinningResult> lottoWinningResults) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (LottoWinningResult result : lottoWinningResults) {
             System.out.printf("%d개 일치", result.getMatchCount());
             if (result.isBonusMatched()) { System.out.print(", 보너스 볼 일치"); }
