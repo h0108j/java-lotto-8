@@ -10,9 +10,9 @@ import java.util.*;
 import static lotto.common.Constants.LOTTO_UNIT_PRICE;
 
 public class Lottos {
-    private static int purchasePrice;
-    private static List<Lotto> lottos;
-    private static Map<LottoRank, Integer> rankCounts;
+    private int purchasePrice;
+    private List<Lotto> lottos;
+    private Map<LottoRank, Integer> rankCounts;
     private Lotto winningNumber;
     private int bonusNumber;
 

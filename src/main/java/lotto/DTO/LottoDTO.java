@@ -1,6 +1,7 @@
 package lotto.DTO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoDTO {
@@ -11,6 +12,6 @@ public class LottoDTO {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 }

@@ -5,9 +5,14 @@
 
 ---
 
-## ⚙️ 기능 목록
+## 💎 프로그램 소개
+
+사용자에게 구입 금액을 입력받아 로또를 자동으로 발행하고,  
+당첨 번호와 비교하여 결과 및 총 수익률을 계산하는 콘솔 기반 로또 발매기입니다.
 
 ---
+
+## ⚙️ 기능 목록
 
 ### 1️⃣ 구입 금액 입력
 
@@ -95,5 +100,57 @@
   - `(총 상금 / 구입 금액) × 100`
 - [x] 소수점 둘째 자리에서 반올림하여 수익률 출력
   - 출력 양식: `총 수익률은 62.5%입니다.`
+
+
+---
+
+## 📂 패키지 구조
+```
+src
+└── main
+└── java
+└── lotto
+├── Application.java                      # 프로그램 시작점, 전체 실행 흐름 제어
+├── common
+│   └── Constants.java                    #  상수 관리
+├── controller
+│   └── LottoController.java              # 전체 흐름 제어
+├── domain
+│   ├── Lotto.java                        # 한 장의 로또 객체
+│   ├── LottoRank.java                    # 당첨 등수, 상금 정보 관리
+│   ├── Lottos.java                       # 여러 장의 로또를 관리하고 결과 계산
+│   ├── factory
+│   │   ├── LottoFactory.java             # 단일 로또 객체 생성 담당
+│   │   └── LottosFactory.java            # 여러 장의 로또 세트를 생성 담당
+│   └── generator
+│       ├── ManualNumberGenerator.java    # 사용자가 입력한 번호로 로또 생성
+│       ├── NumberGenerator.java          # 번호 생성 전략 인터페이스
+│       └── RandomNumberGenerator.java    # 무작위 번호로 로또 생성
+├── DTO
+│   ├── LottoDTO.java                     # 단일 로또 정보 전달용 DTO
+│   ├── LottoGenerateResult.java          # 로또 구매 결과(수동/자동 개수 등) DTO
+│   └── LottoWinningResult.java           # 당첨 통계 및 수익률 결과 DTO
+├── service
+│   └── LottoService.java                 # 로또 생성 및 당첨 결과 계산 핵심 비즈니스 로직
+├── validation
+│   ├── BonusNumberValidator.java         # 보너스 번호의 유효성 및 중복 검증
+│   ├── LottosValidator.java              # 전체 로또 구매 시 입력값 검증
+│   ├── LottoValidator.java               # 단일 로또 번호 유효성 검증 (범위, 중복 등)
+│   └── Validator.java                    # 공통 검증 인터페이스 또는 추상 클래스
+└── view
+    ├── ConsoleInputView.java             # 콘솔로 사용자 입력 처리
+    ├── ConsoleOutputView.java            # 콘솔로 결과 출력 처리
+    ├── InputView.java                    # 입력 뷰 인터페이스
+    └── OutputView.java                   # 출력 뷰 인터페이스
+```
+---
+
+## 🧠 설계 포인트
+
+- MVC 패턴 기반으로 `Controller`, `View`, `Domain의` 역할을 명확히 분리했습니다.
+- `Lotto`와 `Lottos` 생성시에 팩토리 패턴을 사용하여, 검증 및 생성의 책임을 분리했습니다.
+- `NumberGenerator`인터페이스를 정의하여 `LottoFactory`에서 로또 생성 방법을 유연하게 변경하고 랜덤 로직도 예측 가능하게 테스트 할 수 있도록 전략 패턴을 구현했습니다.
+- `LottoRank` Enum에 등수별 당첨 조건과 상금을 정의하여, 조건 변경 시에도 단일 수정으로 일관성을 유지할 수 있도록 했습니다.
+- `DTO`를 사용해 `View`가 `Domain` 객체를 직접 참조하지 않도록 분리하고, `Service` 계층을 통해 변환 책임을 위임했습니다.
 
 ---
