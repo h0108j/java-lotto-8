@@ -24,9 +24,16 @@ public enum LottoRank {
 
     public static LottoRank from(int matchCount, boolean bonus) {
         return Arrays.stream(values())
-                .filter(rank -> rank.matchCount == matchCount && rank.bonus == bonus)
+                .filter(rank -> isMatch(rank, matchCount, bonus))
                 .findFirst()
                 .orElse(MISS);
+    }
+
+    private static boolean isMatch(LottoRank rank, int matchCount, boolean bonus) {
+        if (matchCount == LOTTO_UNIT_COUNT - 1) {
+            return rank.matchCount == matchCount && rank.bonus == bonus;
+        }
+        return rank.matchCount == matchCount;
     }
 
     public int getMatchCount() {
